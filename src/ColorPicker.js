@@ -141,8 +141,8 @@
         this.wheel.getContext('2d').drawImage(this.wheelImg, 0, 0);
         return Ext.defer((function() {
           return this.fillGradient(this.value);
-        }), 20, this);
-      }), 10, this);
+        }), 40, this);
+      }), 20, this);
       return this.mon(this.el, 'click', this.parseImageColor, this);
     },
     afterRender: function() {
