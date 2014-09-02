@@ -139,17 +139,17 @@
       }
       Ext.defer((function() {
         this.wheel.getContext('2d').drawImage(this.wheelImg, 0, 0);
-        return this.fillGradient(this.value);
-      }), 50, this);
+        return Ext.defer((function() {
+          return this.fillGradient(this.value);
+        }), 20, this);
+      }), 10, this);
       return this.mon(this.el, 'click', this.parseImageColor, this);
     },
     afterRender: function() {
-      if (this.canvasSupported) {
-        this.wheelDT = new Ext.dd.DragTracker({
-          el: this.wheel
-        });
-        this.wheelDT.on('drag', this.wheelTrack, this);
-      }
+      this.wheelDT = new Ext.dd.DragTracker({
+        el: this.wheel
+      });
+      this.wheelDT.on('drag', this.wheelTrack, this);
       return this.callParent(arguments);
     },
     wheelTrack: function(tracker, e) {
