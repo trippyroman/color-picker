@@ -137,12 +137,8 @@
       if (typeof G_vmlCanvasManager !== 'undefined') {
         this.gradient = G_vmlCanvasManager.initElement(this.gradient);
       }
-      Ext.defer((function() {
-        this.wheel.getContext('2d').drawImage(this.wheelImg, 0, 0);
-        return Ext.defer((function() {
-          return this.fillGradient(this.value);
-        }), 40, this);
-      }), 20, this);
+      this.fillGradient(this.value);
+      this.wheel.getContext('2d').drawImage(this.wheelImg, 0, 0);
       return this.mon(this.el, 'click', this.parseImageColor, this);
     },
     afterRender: function() {

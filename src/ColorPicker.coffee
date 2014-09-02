@@ -141,11 +141,8 @@ Ext.define 'Ext.ux.ColorWheel',
 
     @gradient = G_vmlCanvasManager.initElement @gradient unless typeof G_vmlCanvasManager is 'undefined'
 
-    Ext.defer (
-      ->
-        @wheel.getContext('2d').drawImage(@wheelImg, 0, 0)
-        Ext.defer (-> @fillGradient(@value)), 40, @
-    ), 20, @
+    @fillGradient(@value)
+    @wheel.getContext('2d').drawImage(@wheelImg, 0, 0)
 
     @mon @el, 'click', @parseImageColor, @
 
