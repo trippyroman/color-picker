@@ -140,7 +140,7 @@
       Ext.defer((function() {
         this.wheel.getContext('2d').drawImage(this.wheelImg, 0, 0);
         return this.fillGradient(this.value);
-      }), 10, this);
+      }), 50, this);
       return this.mon(this.el, 'click', this.parseImageColor, this);
     },
     afterRender: function() {

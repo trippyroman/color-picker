@@ -144,7 +144,7 @@ Ext.define 'Ext.ux.ColorWheel',
     Ext.defer (->
       @wheel.getContext('2d').drawImage(@wheelImg, 0, 0)
       @fillGradient(@value)
-    ), 10, @
+    ), 50, @
 
     @mon @el, 'click', @parseImageColor, @
 
