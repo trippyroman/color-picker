@@ -130,6 +130,7 @@ Ext.define 'Ext.ux.ColorWheel',
       cls    : @wheelCanvasCls,
       height : @getHeight()
 
+    @wheel.getContext('2d').drawImage(@wheelImg, 0, 0)
 
     ### Draw Gradient ###
 
@@ -139,12 +140,8 @@ Ext.define 'Ext.ux.ColorWheel',
       cls    : @gradientCanvasCls,
       height : @getHeight()
 
-    @gradient = G_vmlCanvasManager.initElement @gradient unless typeof G_vmlCanvasManager is 'undefined'
 
-    Ext.defer (->
-      @wheel.getContext('2d').drawImage(@wheelImg, 0, 0)
-      @fillGradient(@value)
-    ), 10, @
+    @fillGradient(@value)
 
     @mon @el, 'click', @parseImageColor, @
 

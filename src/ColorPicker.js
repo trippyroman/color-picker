@@ -126,6 +126,7 @@
         cls: this.wheelCanvasCls,
         height: this.getHeight()
       });
+      this.wheel.getContext('2d').drawImage(this.wheelImg, 0, 0);
 
       /* Draw Gradient */
       this.gradient = dh.append(this.wheelWrapper, {
@@ -134,13 +135,7 @@
         cls: this.gradientCanvasCls,
         height: this.getHeight()
       });
-      if (typeof G_vmlCanvasManager !== 'undefined') {
-        this.gradient = G_vmlCanvasManager.initElement(this.gradient);
-      }
-      Ext.defer((function() {
-        this.wheel.getContext('2d').drawImage(this.wheelImg, 0, 0);
-        return this.fillGradient(this.value);
-      }), 10, this);
+      this.fillGradient(this.value);
       return this.mon(this.el, 'click', this.parseImageColor, this);
     },
     afterRender: function() {
