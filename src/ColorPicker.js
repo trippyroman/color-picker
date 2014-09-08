@@ -152,7 +152,7 @@
       return this.parseImageColor(e, tracker.dragTarget);
     },
     drawPalette: function() {
-      this.wheel.getContext('2d').drawImage(this.picker.wheelImg, 0, 0);
+      this.wheel.getContext('2d').drawImage(this.wheelImg, 0, 0);
       return this.fillGradient(this.getValue());
     },
     fillGradient: function(val) {

@@ -155,7 +155,7 @@ Ext.define 'WR.application.component.widget.ColorWheel',
     @parseImageColor(e, tracker.dragTarget)
 
   drawPalette: ->
-    @wheel.getContext('2d').drawImage(@picker.wheelImg, 0, 0)
+    @wheel.getContext('2d').drawImage(@wheelImg, 0, 0)
     @fillGradient(@getValue())
 
   fillGradient:(val) ->
