@@ -1,4 +1,4 @@
-Ext.define 'Ext.ux.ColorPicker',
+Ext.define 'WR.application.component.widget.ColorPicker',
   extend: 'Ext.form.field.Picker'
 
   alternateClassName: 'WR.component.ColorPicker'
@@ -33,7 +33,6 @@ Ext.define 'Ext.ux.ColorPicker',
       renderTo    : document.body
       floating    : true
       hidden      : true
-      focusOnShow : true
 
     @picker = Ext.widget colorWheelCfg
 
@@ -68,7 +67,13 @@ Ext.define 'Ext.ux.ColorPicker',
 
     @alignPicker() if @alignOnSelect
 
-Ext.define 'Ext.ux.ColorWheel',
+  onExpand: ->
+    unless @_canvasRendered
+      @picker.drawPalette()
+      @_canvasRendered = yes
+
+
+Ext.define 'WR.application.component.widget.ColorWheel',
   alias: 'widget.color-wheel'
   extend: 'Ext.ColorPalette'
 
@@ -82,8 +87,8 @@ Ext.define 'Ext.ux.ColorWheel',
   wheelCanvasCls    : Ext.baseCSSPrefix + 'canvas-wheel'
   gradientCanvasCls : Ext.baseCSSPrefix + 'canvas-gradient'
 
-  wheelImage    : 'img/wheel.png'
-  gradientImage : 'img/gradient.png'
+  wheelImage    : 'assets/img/wheel.png'
+  gradientImage : 'assets/img/gradient.png'
 
   renderTpl: [
     "<div class='{canvasWrapperCls}'></div>"
@@ -91,10 +96,10 @@ Ext.define 'Ext.ux.ColorWheel',
 
   initComponent: ->
     @stylesheet = Ext.util.CSS.createStyleSheet(
-        ".#{@canvasWrapperCls} canvas { position: absolute; top: 0; left: 0; cursor: pointer;}" +
-        ".#{@gradientCanvasCls}  { z-index: 0; }" +
-        ".#{@wheelCanvasCls}  { z-index: 1; }" +
-        ".#{@itemCls} { position: relative; overflow: hidden; }"
+      ".#{@canvasWrapperCls} canvas { position: absolute; top: 0; left: 0; cursor: pointer;}" +
+      ".#{@gradientCanvasCls}  { z-index: 90; }" +
+      ".#{@wheelCanvasCls}  { z-index: 99; }" +
+      ".#{@itemCls} { position: relative; overflow: hidden; }"
     )
 
     @wheelImg = ((src)->
@@ -124,13 +129,11 @@ Ext.define 'Ext.ux.ColorWheel',
     ### Draw Wheel ###
 
     @wheelWrapper =  @el.child('.' + @canvasWrapperCls)
-    @wheel       = dh.append @wheelWrapper,
+    @wheel  = dh.append @wheelWrapper,
       tag    : 'canvas',
       width  : @getWidth(),
       cls    : @wheelCanvasCls,
       height : @getHeight()
-
-    @wheel.getContext('2d').drawImage(@wheelImg, 0, 0)
 
     ### Draw Gradient ###
 
@@ -139,9 +142,6 @@ Ext.define 'Ext.ux.ColorWheel',
       width  : @getWidth(),
       cls    : @gradientCanvasCls,
       height : @getHeight()
-
-
-    @fillGradient(@value)
 
     @mon @el, 'click', @parseImageColor, @
 
@@ -153,6 +153,10 @@ Ext.define 'Ext.ux.ColorWheel',
 
   wheelTrack: (tracker, e) ->
     @parseImageColor(e, tracker.dragTarget)
+
+  drawPalette: ->
+    @wheel.getContext('2d').drawImage(@picker.wheelImg, 0, 0)
+    @fillGradient(@getValue())
 
   fillGradient:(val) ->
     context = @gradient.getContext('2d')
