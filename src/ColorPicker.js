@@ -90,8 +90,8 @@
     canvasWrapperCls: Ext.baseCSSPrefix + 'canvas-wheel-container',
     wheelCanvasCls: Ext.baseCSSPrefix + 'canvas-wheel',
     gradientCanvasCls: Ext.baseCSSPrefix + 'canvas-gradient',
-    wheelImage: 'assets/img/wheel.png',
-    gradientImage: 'assets/img/gradient.png',
+    wheelImage: 'img/wheel.png',
+    gradientImage: 'img/gradient.png',
     renderTpl: ["<div class='{canvasWrapperCls}'></div>"],
     initComponent: function() {
       this.stylesheet = Ext.util.CSS.createStyleSheet(("." + this.canvasWrapperCls + " canvas { position: absolute; top: 0; left: 0; cursor: pointer;}") + ("." + this.gradientCanvasCls + "  { z-index: 90; }") + ("." + this.wheelCanvasCls + "  { z-index: 99; }") + ("." + this.itemCls + " { position: relative; overflow: hidden; }"));
@@ -142,12 +142,10 @@
       return this.mon(this.el, 'click', this.parseImageColor, this);
     },
     afterRender: function() {
-      if (this.canvasSupported) {
-        this.wheelDT = new Ext.dd.DragTracker({
-          el: this.wheel
-        });
-        this.wheelDT.on('drag', this.wheelTrack, this);
-      }
+      this.wheelDT = new Ext.dd.DragTracker({
+        el: this.wheel
+      });
+      this.wheelDT.on('drag', this.wheelTrack, this);
       return this.callParent(arguments);
     },
     wheelTrack: function(tracker, e) {
