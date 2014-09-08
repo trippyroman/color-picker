@@ -87,8 +87,8 @@ Ext.define 'WR.application.component.widget.ColorWheel',
   wheelCanvasCls    : Ext.baseCSSPrefix + 'canvas-wheel'
   gradientCanvasCls : Ext.baseCSSPrefix + 'canvas-gradient'
 
-  wheelImage    : 'assets/img/wheel.png'
-  gradientImage : 'assets/img/gradient.png'
+  wheelImage    : 'img/wheel.png'
+  gradientImage : 'img/gradient.png'
 
   renderTpl: [
     "<div class='{canvasWrapperCls}'></div>"
