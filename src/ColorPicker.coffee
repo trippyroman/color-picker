@@ -172,7 +172,7 @@ Ext.define 'Ext.ux.ColorWheel',
     context.closePath()
     context.fill()
 
-    @gradient.getContext('2d').drawImage(@gradientImage, 33, 32)
+    context.drawImage(@gradientImage, 33, 32)
 
   parseImageColor: (e, target) ->
     context  = @wheel.getContext('2d')

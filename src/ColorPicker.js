@@ -166,7 +166,7 @@
       context.arc(center[0], center[0], 65, 0, 2 * Math.PI, false);
       context.closePath();
       context.fill();
-      return this.gradient.getContext('2d').drawImage(this.gradientImage, 33, 32);
+      return context.drawImage(this.gradientImage, 33, 32);
     },
     parseImageColor: function(e, target) {
       var context, data, position, val;
