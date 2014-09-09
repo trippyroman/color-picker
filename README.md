@@ -9,4 +9,4 @@ Features:
 
 Know issues:
 
-    - color wheel sometimes not render
+    - ...
