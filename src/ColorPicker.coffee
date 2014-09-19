@@ -1,4 +1,4 @@
-Ext.define 'WR.application.component.widget.ColorPicker',
+Ext.define 'Ext.ux.ColorPicker',
   extend: 'Ext.form.field.Picker'
 
   alternateClassName: 'WR.component.ColorPicker'
