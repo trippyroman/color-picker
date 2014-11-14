@@ -79,7 +79,7 @@
     }
   });
 
-  Ext.define('WR.application.component.widget.ColorWheel', {
+  Ext.define('Ext.ColorWheel', {
     alias: 'widget.color-wheel',
     extend: 'Ext.ColorPalette',
     canvasSupported: true,
