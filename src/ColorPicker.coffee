@@ -1,4 +1,4 @@
-Ext.define 'WR.application.component.widget.ColorPicker',
+Ext.define 'Ext.ux.widget.ColorPicker',
   extend: 'Ext.form.field.Picker'
 
   alternateClassName: 'WR.component.ColorPicker'
@@ -30,7 +30,6 @@ Ext.define 'WR.application.component.widget.ColorPicker',
     colorWheelCfg =
       xtype       : 'color-wheel'
       pickerField : @
-      renderTo    : document.body
       floating    : true
       hidden      : true
 
@@ -95,12 +94,13 @@ Ext.define 'WR.application.component.widget.ColorWheel',
   ]
 
   initComponent: ->
+
     @stylesheet = Ext.util.CSS.createStyleSheet(
       ".#{@canvasWrapperCls} canvas { position: absolute; top: 0; left: 0; cursor: pointer;}" +
       ".#{@gradientCanvasCls}  { z-index: 90; }" +
       ".#{@wheelCanvasCls}  { z-index: 99; }" +
       ".#{@itemCls} { position: relative; overflow: hidden; }"
-    )
+    ) if Ext.util.CSS.getRule("." + @gradientCanvasCls, yes) is null
 
     @wheelImg = ((src)->
       img        = new Image()
